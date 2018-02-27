@@ -7,7 +7,7 @@ mod money_test {
 
     #[test]
     fn test_multiplication() {
-        let five = Dollar{amount: 5};
+        let five = Dollar::new(5);
         let mut product = five.times(2);
         assert_eq!(10, product.amount);
         product = five.times(3);
@@ -16,7 +16,7 @@ mod money_test {
 
     #[test]
     fn test_equality() {
-        assert!(Dollar{amount: 5} == Dollar{amount: 5});
-        assert!(Dollar{amount: 5} != Dollar{amount: 6});
+        assert!(Dollar::new(5) == Dollar::new(5));
+        assert!(Dollar::new(5) != Dollar::new(6));
     }
 }
