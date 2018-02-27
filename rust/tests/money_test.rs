@@ -13,4 +13,10 @@ mod money_test {
         product = five.times(3);
         assert_eq!(15, product.amount);
     }
+
+    #[test]
+    fn test_equality() {
+        assert!(Dollar{amount: 5} == Dollar{amount: 5});
+        assert!(Dollar{amount: 5} != Dollar{amount: 6});
+    }
 }

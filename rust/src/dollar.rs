@@ -8,3 +8,9 @@ impl Dollar {
         Dollar{amount: self.amount * multiplier}
     }
 }
+
+impl PartialEq for Dollar {
+    fn eq(&self, other: &Dollar) -> bool {
+        self.amount == other.amount
+    }
+}
