@@ -3,8 +3,8 @@ TDD Bear
 
 ``Test-Driven Development By Examples As Runway``
 
-This is collections as runway to start learing programming languages with TDD
-for fun ;)
+This is collections as runway to start learing programming languages,
+techniques or patterns with TDD for fun ;)
 
 
 * Rust
