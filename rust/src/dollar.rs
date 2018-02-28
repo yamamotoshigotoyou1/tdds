@@ -1,4 +1,5 @@
-#[derive(Debug)]
+use money::MonetaryValue;
+
 pub struct Dollar {
     amount: u32,
 
@@ -14,8 +15,8 @@ impl Dollar {
     }
 }
 
-impl PartialEq for Dollar {
-    fn eq(&self, other: &Dollar) -> bool {
-        self.amount == other.amount
+impl MonetaryValue for Dollar {
+    fn amount(&self) -> u32 {
+        self.amount
     }
 }
