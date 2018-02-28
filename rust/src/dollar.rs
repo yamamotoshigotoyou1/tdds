@@ -1,5 +1,6 @@
+#[derive(Debug)]
 pub struct Dollar {
-    pub amount: u32,
+    amount: u32,
 
 }
 
