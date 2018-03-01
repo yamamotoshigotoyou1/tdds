@@ -4,6 +4,7 @@ extern crate money;
 #[cfg(test)]
 mod money_test {
     use money::money::Money;
+    use money::money::MonetaryUnit;
 
     use money::dollar::Dollar;
     use money::franc::Franc;
@@ -21,6 +22,8 @@ mod money_test {
         assert!(Money::from(Dollar::new(5)) != Money::from(Dollar::new(6)));
         assert!(Money::from(Franc::new(5)) == Money::from(Franc::new(5)));
         assert!(Money::from(Franc::new(5)) != Money::from(Franc::new(6)));
+        assert!(!Franc::new(5).equals(&Dollar::new(5)));
+        assert!(!Franc::new(5).equals(&Money::from(Dollar::new(5))));
     }
 
     #[test]
