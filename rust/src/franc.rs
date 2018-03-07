@@ -1,4 +1,4 @@
-use money::MonetaryValue;
+use money::{Money,MonetaryValue};
 
 
 pub struct Franc {
@@ -11,8 +11,8 @@ impl Franc {
         Franc{amount: amount}
     }
 
-    pub fn times(&self, multiplier: u32) -> Franc {
-        Franc{amount: self.amount * multiplier}
+    pub fn times(&self, multiplier: u32) -> Money {
+        Money::from(Franc{amount: self.amount * multiplier})
     }
 }
 

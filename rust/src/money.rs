@@ -1,4 +1,6 @@
 use std::any::Any;
+use dollar::Dollar;
+use franc::Franc;
 
 #[derive(Debug)]
 pub struct Money {
@@ -8,6 +10,14 @@ pub struct Money {
 impl Money {
     fn amount(&self) -> u32 {
         self.amount
+    }
+
+    pub fn dollar(amount: u32) -> Dollar {
+        Dollar::new(amount)
+    }
+
+    pub fn franc(amount: u32) -> Franc {
+        Franc::new(amount)
     }
 }
 
