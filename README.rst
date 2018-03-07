@@ -10,10 +10,29 @@ techniques or patterns with TDD for fun ;)
 * Rust
 
 
+Packages
+--------
+
+.. |rust-pipeline| image:: https://gitlab.com/grauwoelfchen/tdd-bear/badges/rust/pipeline.svg
+   :target: https://gitlab.com/grauwoelfchen/tdd-bear/commits/rust
+
+.. |rust-coverage| image:: https://gitlab.com/grauwoelfchen/tdd-bear/badges/rust/coverage.svg
+   :target: https://gitlab.com/grauwoelfchen/tdd-bear/commits/rust
+
+
++---------------+-----------------+-----------------+
+| Package       | Pipeline        | Coverage        |
++===============+=================+=================+
+| rust          | |rust-pipeline| | |rust-coverage| |
++---------------+-----------------+-----------------+
+| rust-unittest |                 |                 |
++---------------+-----------------+-----------------+
+|               |                 |                 |
++---------------+-----------------+-----------------+
+
+
+
 Inspired Books
 --------------
 
 * Test-Driven Development By Examples (9780321146533)
-* Test-Driven JavaScript Development (9780321686915)
-* Test-Driven JavaScript Development (9781782174929)
-* The Rspec Book (9781934356371)
