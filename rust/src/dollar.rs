@@ -3,16 +3,16 @@ use money::{Money,MonetaryValue};
 
 pub struct Dollar {
     amount: u32,
-
+    pub currency: &'static str,
 }
 
 impl Dollar {
     pub fn new(amount: u32) -> Dollar {
-        Dollar{amount: amount}
+        Dollar{amount: amount, currency: "USD"}
     }
 
     pub fn times(&self, multiplier: u32) -> Money {
-        Money::from(Dollar{amount: self.amount * multiplier})
+        Money::from(Self::new(self.amount * multiplier))
     }
 }
 

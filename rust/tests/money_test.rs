@@ -9,8 +9,8 @@ mod money_test {
     #[test]
     fn test_multiplication() {
         let five = Money::dollar(5);
-        assert_eq!(Money::from(Money::dollar(10)), Money::from(five.times(2)));
-        assert_eq!(Money::from(Money::dollar(15)), Money::from(five.times(3)));
+        assert_eq!(Money::from(Money::dollar(10)), five.times(2));
+        assert_eq!(Money::from(Money::dollar(15)), five.times(3));
     }
 
     #[test]
@@ -25,7 +25,13 @@ mod money_test {
     #[test]
     fn test_franc_multiplication() {
         let five = Money::franc(5);
-        assert_eq!(Money::from(Money::franc(10)), Money::from(five.times(2)));
-        assert_eq!(Money::from(Money::franc(15)), Money::from(five.times(3)));
+        assert_eq!(Money::from(Money::franc(10)), five.times(2));
+        assert_eq!(Money::from(Money::franc(15)), five.times(3));
+    }
+
+    #[test]
+    fn test_currency() {
+        assert_eq!("USD",  Money::dollar(1).currency);
+        assert_eq!("CHF",  Money::franc(1).currency);
     }
 }
