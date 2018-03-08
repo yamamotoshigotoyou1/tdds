@@ -7,6 +7,8 @@ mod money_test {
     use money::money::MonetaryValue;
     use money::money::MonetaryUnit;
 
+    use money::franc::Franc;
+
     #[test]
     fn test_multiplication() {
         let five = Money::dollar(5);
@@ -32,7 +34,13 @@ mod money_test {
 
     #[test]
     fn test_currency() {
-        assert_eq!("USD",  Money::dollar(1).currency);
-        assert_eq!("CHF",  Money::franc(1).currency);
+        assert_eq!("USD",  Money::dollar(1).currency());
+        assert_eq!("CHF",  Money::franc(1).currency());
+    }
+
+    #[test]
+    fn test_different_class_equality() {
+        assert!(Money::new(10, "CHF").equals(
+                &Money::from(Franc::new(10, "CHF"))));
     }
 }

@@ -5,46 +5,51 @@ use franc::Franc;
 #[derive(Debug)]
 pub struct Money {
     amount: u32,
+    currency: &'static str,
 }
 
 impl Money {
-    fn new(amount: u32) -> Self {
-        // pass
-        Money{amount: amount}
+    pub fn new(amount: u32, currency: &'static str) -> Self {
+        Money{amount: amount, currency}
     }
 
     fn amount(&self) -> u32 {
         self.amount
     }
 
+    fn currency(&self) -> &'static str {
+        self.currency
+    }
+
     pub fn dollar(amount: u32) -> Dollar {
-        Dollar::new(amount)
+        Dollar::new(amount, "USD")
     }
 
     pub fn franc(amount: u32) -> Franc {
-        Franc::new(amount)
+        Franc::new(amount, "CHF")
     }
 }
 
 impl PartialEq for Money {
     fn eq(&self, other: &Money) -> bool {
-        self.amount() == other.amount()
+        self.amount() == other.amount() && self.currency() == other.currency()
     }
 }
 
 pub trait MonetaryValue {
-    fn new(amount: u32) -> Self;
+    fn new(amount: u32, currency: &'static str) -> Self;
 
     fn amount(&self) -> u32;
+    fn currency(&self) -> &'static str;
 
     fn times(&self, multiplier: u32) -> Money {
-        Money::new(self.amount() * multiplier)
+        Money::new(self.amount() * multiplier, self.currency())
     }
 }
 
 impl<T: MonetaryValue> From<T> for Money {
     fn from(a: T) -> Money {
-        Money{amount: a.amount()}
+        Money{amount: a.amount(), currency: a.currency()}
     }
 }
 
@@ -61,7 +66,7 @@ impl<T: Any + PartialEq> MonetaryUnit for T {
     fn equals(&self, other: &MonetaryUnit) -> bool {
         match other.as_any().downcast_ref::<T>() {
             None => false,
-            Some(a) => self == a,
+            Some(a) => self == a
         }
     }
 }
