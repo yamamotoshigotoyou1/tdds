@@ -20,7 +20,7 @@ test-rust:
     - cd rust && make coverage
   after_script:
     - cat rust/target/coverage/index.json
-  coverage: '"covered":"(\d+(?:\.\d+)?)",'
+  coverage: '/"covered":"(\d+(?:\.\d+)?)",/'
   cache:
     untracked: true
     paths:
