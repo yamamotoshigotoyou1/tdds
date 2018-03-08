@@ -24,6 +24,6 @@ impl MonetaryValue for Franc {
 
 impl PartialEq for Franc {
     fn eq(&self, other: &Franc) -> bool {
-        self.amount() == other.amount()
+        self.amount() == other.amount() && self.currency() == other.currency()
     }
 }

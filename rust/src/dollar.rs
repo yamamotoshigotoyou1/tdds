@@ -24,6 +24,6 @@ impl MonetaryValue for Dollar {
 
 impl PartialEq for Dollar {
     fn eq(&self, other: &Dollar) -> bool {
-        self.amount() == other.amount()
+        self.amount() == other.amount() && self.currency() == other.currency()
     }
 }

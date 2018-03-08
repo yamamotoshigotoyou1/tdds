@@ -9,8 +9,7 @@ pub struct Money {
 }
 
 impl Money {
-    fn new(amount: u32, currency: &'static str) -> Self {
-        // pass
+    pub fn new(amount: u32, currency: &'static str) -> Self {
         Money{amount: amount, currency}
     }
 
@@ -33,7 +32,7 @@ impl Money {
 
 impl PartialEq for Money {
     fn eq(&self, other: &Money) -> bool {
-        self.amount() == other.amount()
+        self.amount() == other.amount() && self.currency() == other.currency()
     }
 }
 
@@ -67,7 +66,7 @@ impl<T: Any + PartialEq> MonetaryUnit for T {
     fn equals(&self, other: &MonetaryUnit) -> bool {
         match other.as_any().downcast_ref::<T>() {
             None => false,
-            Some(a) => self == a,
+            Some(a) => self == a
         }
     }
 }
