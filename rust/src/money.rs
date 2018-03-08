@@ -5,24 +5,29 @@ use franc::Franc;
 #[derive(Debug)]
 pub struct Money {
     amount: u32,
+    currency: &'static str,
 }
 
 impl Money {
-    fn new(amount: u32) -> Self {
+    fn new(amount: u32, currency: &'static str) -> Self {
         // pass
-        Money{amount: amount}
+        Money{amount: amount, currency}
     }
 
     fn amount(&self) -> u32 {
         self.amount
     }
 
+    fn currency(&self) -> &'static str {
+        self.currency
+    }
+
     pub fn dollar(amount: u32) -> Dollar {
-        Dollar::new(amount)
+        Dollar::new(amount, "USD")
     }
 
     pub fn franc(amount: u32) -> Franc {
-        Franc::new(amount)
+        Franc::new(amount, "CHF")
     }
 }
 
@@ -33,18 +38,19 @@ impl PartialEq for Money {
 }
 
 pub trait MonetaryValue {
-    fn new(amount: u32) -> Self;
+    fn new(amount: u32, currency: &'static str) -> Self;
 
     fn amount(&self) -> u32;
+    fn currency(&self) -> &'static str;
 
     fn times(&self, multiplier: u32) -> Money {
-        Money::new(self.amount() * multiplier)
+        Money::new(self.amount() * multiplier, self.currency())
     }
 }
 
 impl<T: MonetaryValue> From<T> for Money {
     fn from(a: T) -> Money {
-        Money{amount: a.amount()}
+        Money{amount: a.amount(), currency: a.currency()}
     }
 }
 
