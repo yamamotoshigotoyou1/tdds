@@ -8,6 +8,11 @@ pub struct Money {
 }
 
 impl Money {
+    fn new(amount: u32) -> Self {
+        // pass
+        Money{amount: amount}
+    }
+
     fn amount(&self) -> u32 {
         self.amount
     }
@@ -28,7 +33,13 @@ impl PartialEq for Money {
 }
 
 pub trait MonetaryValue {
+    fn new(amount: u32) -> Self;
+
     fn amount(&self) -> u32;
+
+    fn times(&self, multiplier: u32) -> Money {
+        Money::new(self.amount() * multiplier)
+    }
 }
 
 impl<T: MonetaryValue> From<T> for Money {

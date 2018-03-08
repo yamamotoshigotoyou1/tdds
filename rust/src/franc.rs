@@ -1,4 +1,4 @@
-use money::{Money,MonetaryValue};
+use money::MonetaryValue;
 
 
 pub struct Franc {
@@ -6,17 +6,13 @@ pub struct Franc {
     pub currency: &'static str,
 }
 
-impl Franc {
-    pub fn new(amount: u32) -> Franc {
+impl Franc {}
+
+impl MonetaryValue for Franc {
+    fn new(amount: u32) -> Self {
         Franc{amount: amount, currency: "CHF"}
     }
 
-    pub fn times(&self, multiplier: u32) -> Money {
-        Money::from(Self::new(self.amount * multiplier))
-    }
-}
-
-impl MonetaryValue for Franc {
     fn amount(&self) -> u32 {
         self.amount
     }

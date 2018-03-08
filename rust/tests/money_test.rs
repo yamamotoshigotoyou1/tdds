@@ -4,6 +4,7 @@ extern crate money;
 #[cfg(test)]
 mod money_test {
     use money::money::Money;
+    use money::money::MonetaryValue;
     use money::money::MonetaryUnit;
 
     #[test]
