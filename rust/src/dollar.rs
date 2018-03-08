@@ -1,22 +1,18 @@
-use money::{Money,MonetaryValue};
+use money::MonetaryValue;
 
 
 pub struct Dollar {
     amount: u32,
-
+    pub currency: &'static str,
 }
 
-impl Dollar {
-    pub fn new(amount: u32) -> Dollar {
-        Dollar{amount: amount}
-    }
-
-    pub fn times(&self, multiplier: u32) -> Money {
-        Money::from(Dollar{amount: self.amount * multiplier})
-    }
-}
+impl Dollar {}
 
 impl MonetaryValue for Dollar {
+    fn new(amount: u32) -> Self {
+        Dollar{amount: amount, currency: "USD"}
+    }
+
     fn amount(&self) -> u32 {
         self.amount
     }
