@@ -8,7 +8,7 @@ pub struct Money {
 
 impl Money {
     pub fn new(amount: u32, currency: &'static str) -> Self {
-        Money{amount: amount, currency}
+        Self{amount: amount, currency}
     }
 
     fn amount(&self) -> u32 {
@@ -19,19 +19,19 @@ impl Money {
         self.currency
     }
 
-    pub fn times(&self, multiplier: u32) -> Money {
-        Money::new(self.amount() * multiplier, self.currency())
+    pub fn times(&self, multiplier: u32) -> Self {
+        Self::new(self.amount() * multiplier, self.currency())
     }
 
-    pub fn plus(&self, addend: Money) -> Money {
-        Money::new(self.amount() + addend.amount(), self.currency)
+    pub fn plus(&self, addend: Self) -> Self {
+        Self::new(self.amount() + addend.amount(), self.currency)
     }
 
-    pub fn dollar(amount: u32) -> Money {
+    pub fn dollar(amount: u32) -> Self {
         Self::new(amount, "USD")
     }
 
-    pub fn franc(amount: u32) -> Money {
+    pub fn franc(amount: u32) -> Self {
         Self::new(amount, "CHF")
     }
 }
