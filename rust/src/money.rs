@@ -23,6 +23,10 @@ impl Money {
         Money::new(self.amount() * multiplier, self.currency())
     }
 
+    pub fn plus(&self, addend: Money) -> Money {
+        Money::new(self.amount() + addend.amount(), self.currency)
+    }
+
     pub fn dollar(amount: u32) -> Money {
         Self::new(amount, "USD")
     }
