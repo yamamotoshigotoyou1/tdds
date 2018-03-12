@@ -1,5 +1,7 @@
 use std::any::Any;
 
+use expression::Expression;
+
 #[derive(Debug)]
 pub struct Money {
     amount: u32,
@@ -23,7 +25,7 @@ impl Money {
         Self::new(self.amount() * multiplier, self.currency())
     }
 
-    pub fn plus(&self, addend: Self) -> Self {
+    pub fn plus(&self, addend: &Self) -> Self {
         Self::new(self.amount() + addend.amount(), self.currency)
     }
 
@@ -58,4 +60,7 @@ impl<T: Any + PartialEq> MonetaryObject for T {
             Some(a) => self == a
         }
     }
+}
+
+impl Expression for Money {
 }
