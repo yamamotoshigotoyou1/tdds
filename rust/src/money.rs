@@ -14,7 +14,7 @@ impl Money {
         Self{amount: amount, currency}
     }
 
-    fn amount(&self) -> u32 {
+    pub fn amount(&self) -> u32 {
         self.amount
     }
 
