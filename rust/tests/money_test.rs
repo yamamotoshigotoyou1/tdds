@@ -34,7 +34,7 @@ mod money_test {
         let sum = five.plus(&five);
 
         let bank = Bank::new();
-        let reduced = bank.reduce(sum, "USD");
+        let reduced = bank.reduce(&sum, "USD");
         assert_eq!(Money::dollar(10), reduced);
     }
 
@@ -54,7 +54,7 @@ mod money_test {
         let sum = Sum::new(&three, &four);
 
         let bank = Bank::new();
-        let reduced = bank.reduce(sum, "USD");
+        let reduced = bank.reduce(&sum, "USD");
         assert_eq!(Money::dollar(7), reduced);
     }
 }

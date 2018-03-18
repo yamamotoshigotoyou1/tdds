@@ -11,7 +11,7 @@ pub struct Money {
 
 impl Money {
     pub fn new(amount: u32, currency: &'static str) -> Self {
-        Self{amount: amount, currency}
+        Self{amount, currency}
     }
 
     pub fn amount(&self) -> u32 {
@@ -65,4 +65,7 @@ impl<T: Any + PartialEq> MonetaryObject for T {
 }
 
 impl Expression for Money {
+    fn reduce(&self, _to: &'static str) -> Self {
+        Self::new(self.amount(), self.currency())
+    }
 }

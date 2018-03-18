@@ -1,5 +1,5 @@
 use money::Money;
-use sum::Sum;
+use expression::Expression;
 
 
 pub struct Bank {
@@ -10,8 +10,8 @@ impl Bank {
         Self{}
     }
 
-    pub fn reduce(&self, source: Sum, to: &'static str) -> Money {
-        let amount = source.augend.amount() + source.addend.amount();
-        Money::new(amount, to)
+    pub fn reduce<'a>(&self,
+        source: &'a (Expression + 'a), to: &'static str) -> Money {
+        source.reduce(to)
     }
 }
