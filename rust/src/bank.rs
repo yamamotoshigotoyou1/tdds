@@ -1,4 +1,5 @@
 use money::Money;
+use sum::Sum;
 
 
 pub struct Bank {
@@ -9,7 +10,7 @@ impl Bank {
         Self{}
     }
 
-    pub fn reduce(&self, _source: Money, _to: &'static str) -> Money {
+    pub fn reduce(&self, _source: Sum, _to: &'static str) -> Money {
         Money::dollar(10)
     }
 }

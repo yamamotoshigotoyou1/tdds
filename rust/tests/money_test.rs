@@ -36,4 +36,13 @@ mod money_test {
         let reduced = bank.reduce(sum, "USD");
         assert_eq!(Money::dollar(10), reduced);
     }
+
+    #[test]
+    fn test_plus_returns_sum() {
+        let five = Money::dollar(5);
+        let sum = five.plus(&five);
+
+        assert_eq!(five, *sum.augend);
+        assert_eq!(five, *sum.addend);
+    }
 }

@@ -1,6 +1,7 @@
 use std::any::Any;
 
 use expression::Expression;
+use sum::Sum;
 
 #[derive(Debug)]
 pub struct Money {
@@ -25,8 +26,9 @@ impl Money {
         Self::new(self.amount() * multiplier, self.currency())
     }
 
-    pub fn plus(&self, addend: &Self) -> Self {
-        Self::new(self.amount() + addend.amount(), self.currency)
+    pub fn plus<'a>(&'a self, addend: &'a Self) -> Sum {
+        let s = Sum::new(self, addend);
+        s
     }
 
     pub fn dollar(amount: u32) -> Self {
