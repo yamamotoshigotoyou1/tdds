@@ -1,5 +1,19 @@
 stages:
+  - check
   - test
+
+check-rust:
+  stage: check
+  image: rust:latest
+  before_script:
+    - rustup component add rustfmt-preview
+    - rustc --version
+    - cargo --version
+    - rustfmt --version
+  script:
+    - cd rust && cargo fmt --all -- --write-mode=diff
+  only:
+    - rust
 
 test-rust:
   stage: test
