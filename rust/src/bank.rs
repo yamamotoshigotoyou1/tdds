@@ -1,12 +1,11 @@
 use money::Money;
 use expression::Expression;
 
-pub struct Bank {
-}
+pub struct Bank {}
 
 impl Bank {
     pub fn new() -> Self {
-        Self{}
+        Self { }
     }
 
     pub fn reduce<'a>(&self,

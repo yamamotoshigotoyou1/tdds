@@ -23,8 +23,8 @@ mod money_test {
 
     #[test]
     fn test_currency() {
-        assert_eq!("USD",  Money::dollar(1).currency());
-        assert_eq!("CHF",  Money::franc(1).currency());
+        assert_eq!("USD", Money::dollar(1).currency());
+        assert_eq!("CHF", Money::franc(1).currency());
     }
 
     #[test]

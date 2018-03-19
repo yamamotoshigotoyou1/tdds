@@ -11,7 +11,7 @@ pub struct Money {
 
 impl Money {
     pub fn new(amount: u32, currency: &'static str) -> Self {
-        Self{amount, currency}
+        Self { amount, currency }
     }
 
     pub fn amount(&self) -> u32 {
@@ -23,7 +23,7 @@ impl Money {
     }
 
     pub fn times(&self, multiplier: u32) -> Self {
-        Self{amount: self.amount * multiplier, currency: self.currency}
+        Self { amount: self.amount * multiplier, currency: self.currency }
     }
 
     pub fn plus<'a>(&'a self, addend: &'a Self) -> Sum {
@@ -32,11 +32,11 @@ impl Money {
     }
 
     pub fn dollar(amount: u32) -> Self {
-        Self{amount, currency: "USD"}
+        Self { amount, currency: "USD" }
     }
 
     pub fn franc(amount: u32) -> Self {
-        Self{amount, currency: "CHF"}
+        Self { amount, currency: "CHF" }
     }
 }
 
@@ -66,6 +66,6 @@ impl<T: Any + PartialEq> MonetaryObject for T {
 
 impl Expression for Money {
     fn reduce(&self, _to: &'static str) -> Self {
-        Self{..*self}
+        Self { ..*self }
     }
 }

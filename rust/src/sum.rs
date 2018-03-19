@@ -8,7 +8,7 @@ pub struct Sum<'a> {
 
 impl<'a> Sum<'a> {
     pub fn new(augend: &'a Money, addend: &'a Money) -> Self {
-        Self{augend, addend}
+        Self { augend, addend }
     }
 }
 
