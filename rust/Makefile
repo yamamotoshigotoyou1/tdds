@@ -11,7 +11,7 @@ test:
 
 coverage:
 	../tools/build-kcov
-	cargo test
+	cargo build --tests
 	../tools/check-kcov money_test
 .PHONY: coverage
 
