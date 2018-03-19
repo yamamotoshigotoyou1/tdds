@@ -39,6 +39,6 @@ test-rust:
     untracked: true
     paths:
       - apt-cache
-      - rust/tools/kcov
+      - tools/kcov
   only:
     - rust
