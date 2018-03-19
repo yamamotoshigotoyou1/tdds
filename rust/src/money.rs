@@ -23,7 +23,7 @@ impl Money {
     }
 
     pub fn times(&self, multiplier: u32) -> Self {
-        Self::new(self.amount() * multiplier, self.currency())
+        Self{amount: self.amount * multiplier, currency: self.currency}
     }
 
     pub fn plus<'a>(&'a self, addend: &'a Self) -> Sum {
@@ -32,17 +32,17 @@ impl Money {
     }
 
     pub fn dollar(amount: u32) -> Self {
-        Self::new(amount, "USD")
+        Self{amount, currency: "USD"}
     }
 
     pub fn franc(amount: u32) -> Self {
-        Self::new(amount, "CHF")
+        Self{amount, currency: "CHF"}
     }
 }
 
 impl PartialEq for Money {
     fn eq(&self, other: &Money) -> bool {
-        self.amount() == other.amount() && self.currency() == other.currency()
+        self.amount == other.amount && self.currency == other.currency
     }
 }
 
@@ -66,6 +66,6 @@ impl<T: Any + PartialEq> MonetaryObject for T {
 
 impl Expression for Money {
     fn reduce(&self, _to: &'static str) -> Self {
-        Self::new(self.amount(), self.currency())
+        Self{..*self}
     }
 }

@@ -1,7 +1,6 @@
 use money::Money;
 use expression::Expression;
 
-
 pub struct Bank {
 }
 
