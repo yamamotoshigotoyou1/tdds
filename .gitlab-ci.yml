@@ -11,7 +11,7 @@ check-rust:
     - cargo --version
     - rustfmt --version
   script:
-    - cd rust && cargo fmt --all -- --write-mode=diff
+    - cd rust && make format
   only:
     - rust
 
