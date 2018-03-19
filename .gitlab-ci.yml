@@ -12,10 +12,10 @@ test-rust:
     - apt-get -qq -o dir::cache::archives="$APT_CACHE_DIR" install -y
       binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev
       cmake
-    - ./rust/tools/build-kcov
+    - ./tools/build-kcov
     - rustc --version
     - cargo --version
-    - ./rust/tools/kcov/bin/kcov --version
+    - ./tools/kcov/bin/kcov --version
   script:
     - cd rust && make coverage
   after_script:

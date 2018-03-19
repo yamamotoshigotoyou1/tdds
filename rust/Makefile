@@ -7,9 +7,9 @@ test:
 .PHONY: test
 
 coverage:
-	./tools/build-kcov
+	../tools/build-kcov
 	cargo test
-	./tools/check-kcov money
+	../tools/check-kcov money
 .PHONY: coverage
 
 cov: | coverage

@@ -1,0 +1,4 @@
+/.env.ci
+
+/tools/kcov
+/tools/gitlab-ci-multi-runner
