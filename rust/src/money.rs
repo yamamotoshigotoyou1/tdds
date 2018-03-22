@@ -2,6 +2,7 @@ use std::any::Any;
 
 use expression::Expression;
 use sum::Sum;
+use bank::Bank;
 
 #[derive(Debug)]
 pub struct Money {
@@ -77,7 +78,11 @@ impl<T: Any + PartialEq> MonetaryObject for T {
 }
 
 impl Expression for Money {
-  fn reduce(&self, _to: &'static str) -> Self {
-    Self { ..*self }
+  fn reduce(&self, bank: &Bank, to: &'static str) -> Self {
+    let rate = bank.rate(self.currency, to);
+    Self {
+      amount: self.amount / rate,
+      currency: to,
+    }
   }
 }
