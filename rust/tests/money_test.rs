@@ -56,4 +56,19 @@ mod money_test {
     let reduced = bank.reduce(&sum, "USD");
     assert_eq!(Money::dollar(7), reduced);
   }
+
+  #[test]
+  fn test_reduce_money() {
+    let bank = Bank::new();
+    let result = bank.reduce(&Money::dollar(1), "USD");
+    assert_eq!(Money::dollar(1), result);
+  }
+
+  #[test]
+  fn test_reduce_money_different_currency() {
+    let bank = Bank::new();
+    bank.add_rate("USD", "CHF", 2);
+    let result = bank.reduce(&Money::dollar(2), "CHF");
+    assert_eq!(Money::franc(1), result);
+  }
 }
