@@ -65,6 +65,7 @@ mod money_test {
   }
 
   #[test]
+  // 2 CHF * 2 == 1 USD
   fn test_reduce_money_different_currency() {
     let mut bank = Bank::new();
     bank.add_rate("USD", "CHF", 2);
@@ -75,5 +76,16 @@ mod money_test {
   #[test]
   fn test_identity_rate() {
     assert_eq!(1, Bank::new().rate("CHF", "CHF"));
+  }
+
+  #[test]
+  // 2 CHF * 2 == 1 USD
+  fn test_mixed_addition() {
+    let ten_bucks = Money::dollar(10);
+    let five_francs = Money::franc(5);
+    let mut bank = Bank::new();
+    bank.add_rate("USD", "CHF", 2);
+    let result = bank.reduce(&ten_bucks.plus(&five_francs), "CHF");
+    assert_eq!(Money::franc(10), result);
   }
 }

@@ -14,8 +14,9 @@ impl<'a> Sum<'a> {
 }
 
 impl<'a> Expression for Sum<'a> {
-  fn reduce(&self, _bank: &Bank, to: &'static str) -> Money {
-    let amount = self.augend.amount() + self.addend.amount();
+  fn reduce(&self, bank: &Bank, to: &'static str) -> Money {
+    let amount = self.augend.reduce(bank, to).amount() +
+      self.addend.reduce(bank, to).amount();
     Money::new(amount, to)
   }
 }
