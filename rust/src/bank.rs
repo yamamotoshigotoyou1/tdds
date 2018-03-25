@@ -1,11 +1,18 @@
+use std::collections::HashMap;
+
 use money::Money;
 use expression::Expression;
+use pair::Pair;
 
-pub struct Bank {}
+pub struct Bank {
+  rates: HashMap<Pair, u32>,
+}
 
 impl Bank {
   pub fn new() -> Self {
-    Self {}
+    Self {
+      rates: HashMap::new(),
+    }
   }
 
   pub fn reduce<'a>(
@@ -18,11 +25,21 @@ impl Bank {
   }
 
   pub fn rate(&self, from: &'static str, to: &'static str) -> u32 {
-    match from == "USD" && to == "CHF" {
-      true => 2,
-      false => 1,
+    if from == to {
+      return 1;
+    }
+    match self.rates.get(&Pair::new(from, to)) {
+      Some(rate) => *rate,
+      None => {
+        panic!(
+          "Unknown Pair is given, from: {}, to: {}",
+          from, to
+        )
+      },
     }
   }
 
-  pub fn add_rate(&self, _from: &'static str, _to: &'static str, _rate: u32) {}
+  pub fn add_rate(&mut self, from: &'static str, to: &'static str, rate: u32) {
+    self.rates.insert(Pair::new(from, to), rate);
+  }
 }
