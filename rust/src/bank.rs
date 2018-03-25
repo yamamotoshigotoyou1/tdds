@@ -10,7 +10,9 @@ pub struct Bank {
 
 impl Bank {
   pub fn new() -> Self {
-    Self {rates: HashMap::new()}
+    Self {
+      rates: HashMap::new(),
+    }
   }
 
   pub fn reduce<'a>(
@@ -23,10 +25,17 @@ impl Bank {
   }
 
   pub fn rate(&self, from: &'static str, to: &'static str) -> u32 {
-    if from == to { return 1; }
+    if from == to {
+      return 1;
+    }
     match self.rates.get(&Pair::new(from, to)) {
       Some(rate) => *rate,
-      None => panic!("Unknown Pair is given, from: {}, to: {}", from, to),
+      None => {
+        panic!(
+          "Unknown Pair is given, from: {}, to: {}",
+          from, to
+        )
+      },
     }
   }
 

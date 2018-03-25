@@ -7,10 +7,7 @@ pub struct Pair {
 
 impl Pair {
   pub fn new(from: &'static str, to: &'static str) -> Self {
-    Self {
-      from,
-      to,
-    }
+    Self { from, to }
   }
 }
 
