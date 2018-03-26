@@ -53,8 +53,8 @@ impl PartialEq for Money {
   }
 }
 
-impl<'a> Expression<'a> for Money {
-  fn plus(&'a self, addend: &'a (Expression<'a> + 'a)) -> Sum<'a> {
+impl Expression for Money {
+  fn plus<'a>(&'a self, addend: &'a (Expression + 'a)) -> Sum<'a> {
     Sum::new(self, addend)
   }
 
