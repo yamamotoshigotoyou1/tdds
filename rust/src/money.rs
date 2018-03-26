@@ -1,5 +1,3 @@
-use std::any::Any;
-
 use expression::Expression;
 use sum::Sum;
 use bank::Bank;
@@ -26,18 +24,6 @@ impl Money {
     self.currency
   }
 
-  pub fn times(&self, multiplier: u32) -> Self {
-    Self {
-      amount: self.amount * multiplier,
-      currency: self.currency,
-    }
-  }
-
-  pub fn plus<'a>(&'a self, addend: &'a Self) -> Sum {
-    let s = Sum::new(self, addend);
-    s
-  }
-
   pub fn dollar(amount: u32) -> Self {
     Self {
       amount,
@@ -51,6 +37,14 @@ impl Money {
       currency: "CHF",
     }
   }
+
+  // TODO: Move to Expression
+  pub fn times(&self, multiplier: u32) -> Self {
+    Self {
+      amount: self.amount * multiplier,
+      currency: self.currency,
+    }
+  }
 }
 
 impl PartialEq for Money {
@@ -59,25 +53,11 @@ impl PartialEq for Money {
   }
 }
 
-pub trait MonetaryObject {
-  fn as_any(&self) -> &Any;
-  fn equals(&self, &MonetaryObject) -> bool;
-}
-
-impl<T: Any + PartialEq> MonetaryObject for T {
-  fn as_any(&self) -> &Any {
-    self as &Any
+impl<'a> Expression<'a> for Money {
+  fn plus(&'a self, addend: &'a (Expression<'a> + 'a)) -> Sum<'a> {
+    Sum::new(self, addend)
   }
 
-  fn equals(&self, other: &MonetaryObject) -> bool {
-    match other.as_any().downcast_ref::<T>() {
-      None => false,
-      Some(a) => self == a,
-    }
-  }
-}
-
-impl Expression for Money {
   fn reduce(&self, bank: &Bank, to: &'static str) -> Self {
     let rate = bank.rate(self.currency, to);
     Self {
