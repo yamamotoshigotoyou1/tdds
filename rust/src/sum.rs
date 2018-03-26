@@ -19,7 +19,7 @@ impl<'a> Sum<'a> {
 
 impl<'a> Expression for Sum<'a> {
   fn plus<'b>(&'b self, addend: &'b (Expression + 'b)) -> Sum<'b> {
-    Sum::new(self, addend.clone())
+    Sum::new(self, addend)
   }
 
   fn reduce(&self, bank: &Bank, to: &'static str) -> Money {
