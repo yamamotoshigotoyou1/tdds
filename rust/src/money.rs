@@ -24,18 +24,6 @@ impl Money {
     self.currency
   }
 
-  pub fn times(&self, multiplier: u32) -> Self {
-    Self {
-      amount: self.amount * multiplier,
-      currency: self.currency,
-    }
-  }
-
-  pub fn plus<'a>(&'a self, addend: &'a Self) -> Sum {
-    let s = Sum::new(self, addend);
-    s
-  }
-
   pub fn dollar(amount: u32) -> Self {
     Self {
       amount,
@@ -49,6 +37,14 @@ impl Money {
       currency: "CHF",
     }
   }
+
+  // TODO: Move to Expression
+  pub fn times(&self, multiplier: u32) -> Self {
+    Self {
+      amount: self.amount * multiplier,
+      currency: self.currency,
+    }
+  }
 }
 
 impl PartialEq for Money {
@@ -57,7 +53,11 @@ impl PartialEq for Money {
   }
 }
 
-impl Expression for Money {
+impl<'a> Expression<'a> for Money {
+  fn plus(&'a self, addend: &'a (Expression<'a> + 'a)) -> Sum<'a> {
+    Sum::new(self, addend)
+  }
+
   fn reduce(&self, bank: &Bank, to: &'static str) -> Self {
     let rate = bank.rate(self.currency, to);
     Self {
