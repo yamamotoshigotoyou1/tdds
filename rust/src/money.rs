@@ -1,5 +1,3 @@
-use std::any::Any;
-
 use expression::Expression;
 use sum::Sum;
 use bank::Bank;
@@ -56,24 +54,6 @@ impl Money {
 impl PartialEq for Money {
   fn eq(&self, other: &Money) -> bool {
     self.amount == other.amount && self.currency == other.currency
-  }
-}
-
-pub trait MonetaryObject {
-  fn as_any(&self) -> &Any;
-  fn equals(&self, &MonetaryObject) -> bool;
-}
-
-impl<T: Any + PartialEq> MonetaryObject for T {
-  fn as_any(&self) -> &Any {
-    self as &Any
-  }
-
-  fn equals(&self, other: &MonetaryObject) -> bool {
-    match other.as_any().downcast_ref::<T>() {
-      None => false,
-      Some(a) => self == a,
-    }
   }
 }
 

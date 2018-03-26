@@ -2,8 +2,8 @@ extern crate money;
 
 #[cfg(test)]
 mod money_test {
+  use money::expression::ExpressionalObject;
   use money::money::Money;
-  use money::money::MonetaryObject;
   use money::bank::Bank;
   use money::sum::Sum;
 
