@@ -3,8 +3,8 @@ use money::Money;
 use bank::Bank;
 
 pub struct Sum<'a> {
-  pub augend: &'a (Expression + 'a),
-  pub addend: &'a (Expression + 'a),
+  augend: &'a (Expression + 'a),
+  addend: &'a (Expression + 'a),
 }
 
 impl<'a> Sum<'a> {
