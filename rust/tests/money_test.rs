@@ -42,8 +42,8 @@ mod money_test {
     let five = Money::dollar(5);
     let sum = five.plus(&five);
 
-    assert_eq!(five, *sum.augend);
-    assert_eq!(five, *sum.addend);
+    assert!(five.equals(sum.augend));
+    assert!(five.equals(sum.addend));
   }
 
   #[test]
