@@ -4,6 +4,7 @@ stages:
 
 check-rust:
   stage: check
+  # image: rust:latest
   image: rustlang/rust:nightly
   before_script:
     - rustup component add rustfmt-preview
@@ -17,7 +18,8 @@ check-rust:
 
 test-rust:
   stage: test
-  image: rust:latest
+  # image: rust:latest
+  image: rustlang/rust:nightly
   variables:
     KCOV_DISCARD_CACHE: "false"
     APT_CACHE_DIR: apt-cache
