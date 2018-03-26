@@ -6,7 +6,6 @@ extern crate money;
 mod money_test {
   use std::intrinsics::type_name;
 
-  use money::expression::ExpressionalObject;
   use money::expression::Expression;
   use money::money::Money;
   use money::bank::Bank;
@@ -27,7 +26,7 @@ mod money_test {
   fn test_equality() {
     assert!(Money::dollar(5) == Money::dollar(5));
     assert!(Money::dollar(5) != Money::dollar(6));
-    assert!(!Money::franc(5).equals(&Money::dollar(5)));
+    assert!(Money::franc(5) != Money::dollar(5));
   }
 
   #[test]
@@ -53,11 +52,6 @@ mod money_test {
 
     // TODO: Consider more efficient way :'(
     // Should `augend` and `addend` be really checked?
-    //
-    // Following lines don't work, because {augend/addend} is
-    // not &Money any more. It's &'a (Expression + 'a)
-    // assert!(five.equals(*sum.augend));
-    // assert!(five.equals(*sum.addend));
     assert_eq!("money::sum::Sum", get_type(&sum));
   }
 
