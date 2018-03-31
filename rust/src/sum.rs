@@ -1,6 +1,7 @@
 use expression::Expression;
-use money::Money;
 use bank::Bank;
+use money::Money;
+use mul::Mul;
 
 pub struct Sum<'a> {
   augend: &'a (Expression + 'a),
@@ -17,8 +18,8 @@ impl<'a> Sum<'a> {
   }
 }
 
-impl<'a> Expression for Sum<'a> {
-  fn plus<'b>(&'b self, addend: &'b (Expression + 'b)) -> Sum<'b> {
+impl<'b> Expression for Sum<'b> {
+  fn plus<'a>(&'a self, addend: &'a (Expression + 'a)) -> Sum<'a> {
     Sum::new(self, addend)
   }
 
@@ -26,5 +27,9 @@ impl<'a> Expression for Sum<'a> {
     let amount = self.augend.reduce(bank, to).amount() +
       self.addend.reduce(bank, to).amount();
     Money::new(amount, to)
+  }
+
+  fn times<'a>(&'a self, multiplier: u32) -> Mul<'a> {
+    Mul::new(self, multiplier)
   }
 }

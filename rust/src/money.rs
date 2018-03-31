@@ -1,6 +1,7 @@
 use expression::Expression;
-use sum::Sum;
 use bank::Bank;
+use mul::Mul;
+use sum::Sum;
 
 #[derive(Debug)]
 pub struct Money {
@@ -37,14 +38,6 @@ impl Money {
       currency: "CHF",
     }
   }
-
-  // TODO: Move to Expression
-  pub fn times(&self, multiplier: u32) -> Self {
-    Self {
-      amount: self.amount * multiplier,
-      currency: self.currency,
-    }
-  }
 }
 
 impl PartialEq for Money {
@@ -64,5 +57,9 @@ impl Expression for Money {
       amount: self.amount / rate,
       currency: to,
     }
+  }
+
+  fn times<'a>(&'a self, multiplier: u32) -> Mul<'a> {
+    Mul::new(self, multiplier)
   }
 }
