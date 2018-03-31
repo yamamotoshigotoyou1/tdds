@@ -33,6 +33,7 @@ mod money_test {
   #[test]
   fn test_equality() {
     assert!(Money::dollar(5) == Money::dollar(5));
+
     assert!(Money::dollar(5) != Money::dollar(6));
     assert!(Money::franc(5) != Money::dollar(5));
   }
@@ -58,8 +59,8 @@ mod money_test {
     let five = Money::dollar(5);
     let sum = five.plus(&five);
 
-    // TODO: Consider more efficient way :'(
-    // Should `augend` and `addend` be really checked?
+    // NOTE:
+    // should `augend` and `addend` be really checked?
     assert_eq!("money::sum::Sum", get_type(&sum));
   }
 
@@ -68,8 +69,10 @@ mod money_test {
     let three = Money::dollar(3);
     let four = Money::dollar(4);
     let sum = Sum::new(&three, &four);
+
     let bank = Bank::new();
     let reduced = bank.reduce(&sum, "USD");
+
     assert_eq!(Money::dollar(7), reduced);
   }
 
@@ -77,8 +80,10 @@ mod money_test {
   fn test_reduce_mul() {
     let three = Money::dollar(3);
     let mul = Mul::new(&three, 3);
+
     let bank = Bank::new();
     let reduced = bank.reduce(&mul, "USD");
+
     assert_eq!(Money::dollar(9), reduced);
   }
 
@@ -86,6 +91,7 @@ mod money_test {
   fn test_reduce_money() {
     let bank = Bank::new();
     let result = bank.reduce(&Money::dollar(1), "USD");
+
     assert_eq!(Money::dollar(1), result);
   }
 
@@ -95,6 +101,7 @@ mod money_test {
     let mut bank = Bank::new();
     bank.add_rate("USD", "CHF", 2);
     let result = bank.reduce(&Money::dollar(2), "CHF");
+
     assert_eq!(Money::franc(1), result);
   }
 
@@ -108,8 +115,10 @@ mod money_test {
     // 1 CHF == 2 USD
     let ten_bucks = Money::dollar(10);
     let five_francs = Money::franc(5);
+
     let mut bank = Bank::new();
     bank.add_rate("USD", "CHF", 2);
+
     let result = bank.reduce(&ten_bucks.plus(&five_francs), "CHF");
     assert_eq!(Money::franc(10), result);
   }
@@ -119,10 +128,13 @@ mod money_test {
     // 1 CHF == 2 USD
     let ten_bucks = Money::dollar(10);
     let five_francs = Money::franc(5);
+
     let mut bank = Bank::new();
     bank.add_rate("USD", "CHF", 2);
+
     let sum = ten_bucks.plus(&five_francs);
     let result = bank.reduce(&sum.times(3), "CHF");
+
     assert_eq!(Money::franc(30), result);
   }
 
@@ -131,18 +143,23 @@ mod money_test {
     // 1 CHF == 2 USD
     let ten_bucks = Money::dollar(10);
     let five_francs = Money::franc(5);
+
     let mut bank = Bank::new();
     bank.add_rate("USD", "CHF", 2);
+
     let sum = Sum::new(&ten_bucks, &five_francs);
     let result = bank.reduce(&sum.plus(&five_francs), "CHF");
+
     assert_eq!(Money::franc(15), result);
   }
 
   #[test]
   fn test_mul_times() {
     let five_francs = Money::franc(5);
+
     let bank = Bank::new();
     let mul = Mul::new(&five_francs, 2);
+
     assert_eq!(Money::franc(100), bank.reduce(&mul.times(10), "CHF"));
   }
 
@@ -151,10 +168,13 @@ mod money_test {
     // 1 CHF == 2 USD
     let ten_bucks = Money::dollar(10);
     let five_francs = Money::franc(5);
+
     let mut bank = Bank::new();
     bank.add_rate("USD", "CHF", 2);
+
     let sum = Sum::new(&ten_bucks, &five_francs);
     let result = bank.reduce(&sum.times(2), "CHF");
+
     assert_eq!(Money::franc(20), result);
   }
 }
