@@ -6,12 +6,6 @@ Rust
     % cargo test
 
 
-TODO
------
-
-See ``TODO.md``.
-
-
 License
 -------
 
