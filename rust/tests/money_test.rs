@@ -160,7 +160,10 @@ mod money_test {
     let bank = Bank::new();
     let mul = Mul::new(&five_francs, 2);
 
-    assert_eq!(Money::franc(100), bank.reduce(&mul.times(10), "CHF"));
+    assert_eq!(
+      Money::franc(100),
+      bank.reduce(&mul.times(10), "CHF")
+    );
   }
 
   #[test]

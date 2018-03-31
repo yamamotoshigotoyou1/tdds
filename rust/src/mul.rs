@@ -9,12 +9,11 @@ pub struct Mul<'a> {
 }
 
 impl<'a> Mul<'a> {
-  pub fn new(
-    multiplicand: &'a (Expression + 'a),
-    multiplier: u32
-  ) -> Mul<'a>
-  {
-    Self { multiplicand, multiplier }
+  pub fn new(multiplicand: &'a (Expression + 'a), multiplier: u32) -> Mul<'a> {
+    Self {
+      multiplicand,
+      multiplier,
+    }
   }
 }
 
@@ -25,10 +24,7 @@ impl<'b> Expression for Mul<'b> {
 
   fn reduce(&self, bank: &Bank, to: &'static str) -> Money {
     let m = self.multiplicand.reduce(bank, to);
-    Money::new(
-      m.amount() * self.multiplier,
-      m.currency()
-    )
+    Money::new(m.amount() * self.multiplier, m.currency())
   }
 
   fn times<'a>(&'a self, multiplier: u32) -> Mul<'a> {
