@@ -5,7 +5,7 @@ stages:
 check-rust:
   stage: check
   # image: rust:latest
-  image: rustlang/rust:nightly
+  image: grauwoelfchen/rust:nightly
   before_script:
     - rustup component add rustfmt-preview
     - rustc --version
@@ -19,15 +19,12 @@ check-rust:
 test-rust:
   stage: test
   # image: rust:latest
-  image: rustlang/rust:nightly
+  image: grauwoelfchen/rust:nightly
   variables:
     KCOV_DISCARD_CACHE: "false"
-    APT_CACHE_DIR: apt-cache
   before_script:
-    - mkdir -pv $APT_CACHE_DIR && apt-get -qq update
-    - apt-get -qq -o dir::cache::archives="$APT_CACHE_DIR" install -y
-      binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev
-      cmake
+    - emerge -qv sys-libs/zlib sys-libs/binutils-libs
+      dev-util/cmake net-misc/curl
     - ./tools/build-kcov
     - rustc --version
     - cargo --version
@@ -38,9 +35,13 @@ test-rust:
     - cat rust/target/coverage/index.json
   coverage: '/"covered":"(\d+(?:\.\d+)?)",/'
   cache:
+    key: "$CI_JOB_NAME-$CI_COMMIT_REF_SLUG"
     untracked: true
     paths:
-      - apt-cache
       - tools/kcov
+      # shared
+      - /var/db/pkg
+      - /var/cache/edb
+      - /var/cache/portage/distfiles
   only:
     - rust
