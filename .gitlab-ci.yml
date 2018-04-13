@@ -5,12 +5,11 @@ stages:
 check-rust:
   stage: check
   # image: rust:latest
-  image: grauwoelfchen/rust:nightly
+  image: grauwoelfchen/rust-ci-tools:nightly
   before_script:
-    - rustup component add rustfmt-preview
     - rustc --version
     - cargo --version
-    - rustfmt --version
+    - cargo fmt --version
   script:
     - cd rust && make format
   only:
@@ -19,29 +18,15 @@ check-rust:
 test-rust:
   stage: test
   # image: rust:latest
-  image: grauwoelfchen/rust:nightly
-  variables:
-    KCOV_DISCARD_CACHE: "false"
+  image: grauwoelfchen/rust-ci-tools:nightly
   before_script:
-    - emerge -qv sys-libs/zlib sys-libs/binutils-libs
-      dev-util/cmake net-misc/curl
-    - ./tools/build-kcov
     - rustc --version
     - cargo --version
-    - ./tools/kcov/bin/kcov --version
+    - kcov --version
   script:
     - cd rust && make coverage
   after_script:
     - cat rust/target/coverage/index.json
   coverage: '/"covered":"(\d+(?:\.\d+)?)",/'
-  cache:
-    key: "$CI_JOB_NAME-$CI_COMMIT_REF_SLUG"
-    untracked: true
-    paths:
-      - tools/kcov
-      # shared
-      - /var/db/pkg
-      - /var/cache/edb
-      - /var/cache/portage/distfiles
   only:
     - rust
