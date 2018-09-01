@@ -10,7 +10,7 @@ fmt: | format
 .PHONY: fmt
 
 test:  ## Run unit tests
-	cargo test
+	cargo test -- --nocapture
 .PHONY: test
 
 coverage:  ## Generate coverage report of unit tests using kcov (alias: cov)

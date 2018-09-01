@@ -1,5 +1,5 @@
-Rust
-====
+Rust Unittest
+=============
 
 .. code:: zsh
 
