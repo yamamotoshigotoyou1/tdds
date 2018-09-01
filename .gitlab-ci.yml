@@ -15,6 +15,19 @@ check-rust:
   only:
     - rust
 
+check-rust-unittest:
+  stage: vet
+  # image: rust:latest
+  image: grauwoelfchen/rust-ci-tools:nightly
+  before_script:
+    - rustc --version
+    - cargo --version
+    - cargo fmt --version
+  script:
+    - cd rust-unittest && make format
+  only:
+    - rust-unittest
+
 test-rust:
   stage: test
   # image: rust:latest
@@ -30,3 +43,19 @@ test-rust:
   coverage: '/"covered":"(\d+(?:\.\d+)?)",/'
   only:
     - rust
+
+test-rust-unittest:
+  stage: test
+  # image: rust:latest
+  image: grauwoelfchen/rust-ci-tools:nightly
+  before_script:
+    - rustc --version
+    - cargo --version
+    - kcov --version
+  script:
+    - cd rust-unittest && make coverage
+  after_script:
+    - cat rust-unittest/target/coverage/index.json
+  coverage: '/"covered":"(\d+(?:\.\d+)?)",/'
+  only:
+    - rust-unittest
