@@ -1,9 +1,9 @@
 stages:
-  - check
+  - vet
   - test
 
 check-rust:
-  stage: check
+  stage: vet
   # image: rust:latest
   image: grauwoelfchen/rust-ci-tools:nightly
   before_script:
