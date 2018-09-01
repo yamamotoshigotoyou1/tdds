@@ -1,3 +1,6 @@
+Sat 01 Sep 2018 Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	* [rust] Fix format, Update Makefile (make help)
+
 Fri 13 Apr 2018 Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net>
 	* Create docker image for jobs on CI (grauwoelfchen/rust-ci-tools)
 
