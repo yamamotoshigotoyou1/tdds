@@ -3,7 +3,7 @@ TDD Bear
 
 ``Test-Driven Development By Examples As Runway``
 
-This is collections as runway to start learing programming languages,
+This is collection as runway to start learing programming languages,
 techniques or patterns with TDD for fun ;)
 
 
@@ -19,16 +19,22 @@ Packages
 .. |rust-coverage| image:: https://gitlab.com/grauwoelfchen/tdd-bear/badges/rust/coverage.svg
    :target: https://gitlab.com/grauwoelfchen/tdd-bear/commits/rust
 
+.. |rust-unittest-pipeline| image:: https://gitlab.com/grauwoelfchen/tdd-bear/badges/rust-unittest/pipeline.svg
+   :target: https://gitlab.com/grauwoelfchen/tdd-bear/commits/rust-unittest
 
-+---------------+-----------------+-----------------+
-| Package       | Pipeline        | Coverage        |
-+===============+=================+=================+
-| rust          | |rust-pipeline| | |rust-coverage| |
-+---------------+-----------------+-----------------+
-| rust-unittest |                 |                 |
-+---------------+-----------------+-----------------+
-|               |                 |                 |
-+---------------+-----------------+-----------------+
+.. |rust-unittest-coverage| image:: https://gitlab.com/grauwoelfchen/tdd-bear/badges/rust-unittest/coverage.svg
+   :target: https://gitlab.com/grauwoelfchen/tdd-bear/commits/rust-unittest
+
+
++---------------+--------------------------+--------------------------+
+| Package       | Pipeline                 | Coverage                 |
++===============+==========================+==========================+
+| rust          | |rust-pipeline|          | |rust-coverage|          |
++---------------+--------------------------+--------------------------+
+| rust-unittest | |rust-unittest-pipeline| | |rust-unittest-coverage| |
++---------------+--------------------------+--------------------------+
+|               |                          |                          |
++---------------+--------------------------+--------------------------+
 
 
 
