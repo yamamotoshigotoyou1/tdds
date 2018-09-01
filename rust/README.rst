@@ -3,7 +3,8 @@ Rust
 
 .. code:: zsh
 
-    % cargo test
+    # See `make help`
+    % make test
 
 
 License
