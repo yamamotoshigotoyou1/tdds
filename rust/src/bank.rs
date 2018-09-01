@@ -30,12 +30,7 @@ impl Bank {
     }
     match self.rates.get(&Pair::new(from, to)) {
       Some(rate) => *rate,
-      None => {
-        panic!(
-          "Unknown Pair is given, from: {}, to: {}",
-          from, to
-        )
-      },
+      None => panic!("Unknown Pair is given, from: {}, to: {}", from, to),
     }
   }
 
