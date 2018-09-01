@@ -11,10 +11,7 @@ pub struct Money {
 
 impl Money {
   pub fn new(amount: u32, currency: &'static str) -> Self {
-    Self {
-      amount,
-      currency,
-    }
+    Self { amount, currency }
   }
 
   pub fn amount(&self) -> u32 {
