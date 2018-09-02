@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 #[allow(dead_code)]
 #[derive(Debug)]
 struct WasRun {
@@ -7,8 +9,23 @@ struct WasRun {
 
 #[allow(dead_code)]
 impl WasRun {
+  pub fn new(name: &'static str) -> Self {
+    WasRun { was_run: 0, name }
+  }
+
   pub fn test_method(&mut self) {
     self.was_run = 1;
+  }
+
+  pub fn run(&mut self) {
+    // TODO: alternative way for dynamic method invocation
+    let mut methods: HashMap<&'static str, fn(&mut Self)> = HashMap::new();
+    methods.insert("test_method", WasRun::test_method);
+
+    match methods.get(self.name) {
+      Some(f) => f(self),
+      None => panic!("Not found"),
+    };
   }
 }
 
@@ -18,13 +35,10 @@ mod was_run_test {
 
   #[test]
   fn test_was_run() {
-    let mut test: WasRun = WasRun {
-      was_run: 0,
-      name: "test_method",
-    };
+    let mut test = WasRun::new("test_method");
 
     println!("{}", test.was_run);
-    test.test_method();
+    test.run();
     println!("{}", test.was_run);
   }
 }
