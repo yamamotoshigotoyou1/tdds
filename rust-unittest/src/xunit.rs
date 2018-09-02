@@ -8,10 +8,7 @@ struct WasRun {
 #[allow(dead_code)]
 impl WasRun {
   pub fn new(name: &'static str) -> Self {
-    WasRun {
-      was_run: 0,
-      name: name,
-    }
+    WasRun { was_run: 0, name }
   }
 
   pub fn test_method(&mut self) {
