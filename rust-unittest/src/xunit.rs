@@ -14,6 +14,10 @@ impl WasRun {
   pub fn test_method(&mut self) {
     self.was_run = 1;
   }
+
+  pub fn run(&mut self) {
+    self.test_method();
+  }
 }
 
 #[cfg(test)]
@@ -25,7 +29,7 @@ mod was_run_test {
     let mut test = WasRun::new("test_method");
 
     println!("{}", test.was_run);
-    test.test_method();
+    test.run();
     println!("{}", test.was_run);
   }
 }
