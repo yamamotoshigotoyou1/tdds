@@ -28,6 +28,16 @@ check-rust-unittest:
   only:
     - rust-unittest
 
+check-go-unittest:
+  stage: vet
+  image: go:latest
+  before_script:
+    - go version
+  script:
+    - cd go-unittest && make format
+  only:
+    - go-unittest
+
 test-rust:
   stage: test
   # image: rust:latest
@@ -59,3 +69,25 @@ test-rust-unittest:
   coverage: '/"covered":"(\d+(?:\.\d+)?)",/'
   only:
     - rust-unittest
+
+# TODO:
+# - create docker image for go (Gentoo Linux)
+# - coverage
+test-go-unittest:
+  stage: test
+  image: go:latest
+  variables:
+    APT_CACHE_DIR: apt-cache
+  before_script:
+    - mkdir -pv $APT_CACHE_DIR && apt-get -qq update
+    - apt-get -qq -o dir::cache::archives="$APT_CACHE_DIR" install -y
+      zip
+    - go get -u github.com/golang/dep/cmd/dep
+    - go version
+  script:
+    - cd go-unittest && make test
+  cache:
+    paths:
+      - apt-cache
+  only:
+    - go-unittest
