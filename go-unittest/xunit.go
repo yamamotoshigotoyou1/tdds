@@ -17,6 +17,10 @@ func wasRun(name string) WasRun {
 	}
 }
 
+func (r *WasRun) run() {
+	r.testMethod()
+}
+
 func (r *WasRun) testMethod() {
 	r.wasRun = 1
 }
@@ -24,6 +28,6 @@ func (r *WasRun) testMethod() {
 func main() {
 	test := wasRun("testMethod")
 	fmt.Println(test.wasRun)
-	test.testMethod()
+	test.run()
 	fmt.Println(test.wasRun)
 }
