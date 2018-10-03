@@ -21,8 +21,8 @@ type TestRunner struct {
 // I have to do like this, right now:
 //
 // ```
-// test.Run(&test)`
-// 
+// test.Run(&test)
+//
 // # but I want
 // test.Run()
 // ```
