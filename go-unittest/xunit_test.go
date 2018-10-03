@@ -15,7 +15,7 @@ type TestCaseTest struct {
 func (suite *TestCaseTest) TestRunnig() {
 	test := NewWasRun("TestMethod")
 	suite.Equal(0, test.WasRun)
-	run(&test)
+	test.Run(&test)
 	suite.Equal(1, test.WasRun)
 }
 
