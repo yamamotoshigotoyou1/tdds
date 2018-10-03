@@ -28,29 +28,21 @@ func run(t TestCase) {
 	}
 }
 
-// MyTestCase ...
-type MyTestCase struct {
+// WasRun ...
+type WasRun struct {
 	Name   string
 	WasRun int
 }
 
-// NewMyTestCase ...
-func NewMyTestCase(name string) MyTestCase {
-	return MyTestCase{
+// NewWasRun ...
+func NewWasRun(name string) WasRun {
+	return WasRun{
 		Name:   name,
 		WasRun: 0,
 	}
 }
 
 // TestMethod ...
-func (r *MyTestCase) TestMethod() {
+func (r *WasRun) TestMethod() {
 	// do something
-	//fmt.Println("TestMethod")
-}
-
-func main() {
-	test := NewMyTestCase("TestMethod")
-	fmt.Println(test.WasRun)
-	run(&test)
-	fmt.Println(test.WasRun)
 }
