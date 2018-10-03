@@ -5,39 +5,52 @@ import (
 	"reflect"
 )
 
-// WasRun ...
-type WasRun struct {
-	name string
-	wasRun int
+// TestCase ...
+type TestCase interface {
 }
 
-func wasRun(name string) WasRun {
-	return WasRun{
-		name: name,
-		wasRun: 0,
-	}
-}
+func run(t TestCase) {
+	v := reflect.ValueOf(t).Elem()
+	name := fmt.Sprintf("%v", v.FieldByName("Name"))
 
-// TestMethod ...
-func (r *WasRun) TestMethod() {
-	r.wasRun = 1
-}
+	// new object
+	vv := reflect.New(v.Type())
 
-func (r *WasRun) run() {
-	t := reflect.ValueOf(r)
-
-	// reflect is available only for exported methods
-	method := t.MethodByName(r.name)
+	method := vv.MethodByName(name)
 	if method.IsValid() {
 		args := []reflect.Value{}
 		method.Call(args)
 	}
+
+	wasRun := v.FieldByName("WasRun")
+	if wasRun.Kind() == reflect.Int {
+		wasRun.SetInt(1)
+	}
 }
 
+// MyTestCase ...
+type MyTestCase struct {
+	Name   string
+	WasRun int
+}
+
+// NewMyTestCase ...
+func NewMyTestCase(name string) MyTestCase {
+	return MyTestCase{
+		Name:   name,
+		WasRun: 0,
+	}
+}
+
+// TestMethod ...
+func (r *MyTestCase) TestMethod() {
+	// do something
+	//fmt.Println("TestMethod")
+}
 
 func main() {
-	test := wasRun("TestMethod")
-	fmt.Println(test.wasRun)
-	test.run()
-	fmt.Println(test.wasRun)
+	test := NewMyTestCase("TestMethod")
+	fmt.Println(test.WasRun)
+	run(&test)
+	fmt.Println(test.WasRun)
 }
