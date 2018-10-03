@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 )
 
 // WasRun ...
@@ -17,16 +18,25 @@ func wasRun(name string) WasRun {
 	}
 }
 
-func (r *WasRun) run() {
-	r.testMethod()
-}
-
-func (r *WasRun) testMethod() {
+// TestMethod ...
+func (r *WasRun) TestMethod() {
 	r.wasRun = 1
 }
 
+func (r *WasRun) run() {
+	t := reflect.ValueOf(r)
+
+	// reflect is available only for exported methods
+	method := t.MethodByName(r.name)
+	if method.IsValid() {
+		args := []reflect.Value{}
+		method.Call(args)
+	}
+}
+
+
 func main() {
-	test := wasRun("testMethod")
+	test := wasRun("TestMethod")
 	fmt.Println(test.wasRun)
 	test.run()
 	fmt.Println(test.wasRun)
