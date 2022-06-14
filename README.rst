@@ -1,11 +1,7 @@
-TDD Bear
+TDDS
 ========
 
-``Test-Driven Development By Examples As Runway``
-
-This is collection as runway to start learing programming languages,
-techniques or patterns with TDD for fun ;)
-
+``Test-Driven Development Samples``
 
 * Rust
 * Go
