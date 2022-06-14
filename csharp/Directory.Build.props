@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <BaseOutputPath>..\..\dst\bin\$(AssemblyName)</BaseOutputPath>
+    <BaseIntermediateOutputPath>..\..\dst\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+</Project>
