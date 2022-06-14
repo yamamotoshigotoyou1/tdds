@@ -1,11 +1,7 @@
-TDD Bear
+TDDS
 ========
 
-``Test-Driven Development By Examples As Runway``
-
-This is collection as runway to start learing programming languages,
-techniques or patterns with TDD for fun ;)
-
+``Test-Driven Development Samples``
 
 * Rust
 * Go
@@ -15,35 +11,35 @@ techniques or patterns with TDD for fun ;)
 Packages
 --------
 
-.. |rust-pipeline| image:: https://gitlab.com/grauwoelfchen/tdd-bear/badges/rust/pipeline.svg
-   :target: https://gitlab.com/grauwoelfchen/tdd-bear/commits/rust
+.. |rust-pipeline| image:: https://gitlab.com/grauwoelfchen/tdds/badges/rust/pipeline.svg
+   :target: https://gitlab.com/grauwoelfchen/tdds/commits/rust
 
-.. |rust-coverage| image:: https://gitlab.com/grauwoelfchen/tdd-bear/badges/rust/coverage.svg
-   :target: https://gitlab.com/grauwoelfchen/tdd-bear/commits/rust
+.. |rust-coverage| image:: https://gitlab.com/grauwoelfchen/tdds/badges/rust/coverage.svg
+   :target: https://gitlab.com/grauwoelfchen/tdds/commits/rust
 
-.. |rust-unittest-pipeline| image:: https://gitlab.com/grauwoelfchen/tdd-bear/badges/rust-unittest/pipeline.svg
-   :target: https://gitlab.com/grauwoelfchen/tdd-bear/commits/rust-unittest
+.. |rust-unittest-pipeline| image:: https://gitlab.com/grauwoelfchen/tdds/badges/rust-unittest/pipeline.svg
+   :target: https://gitlab.com/grauwoelfchen/tdds/commits/rust-unittest
 
-.. |rust-unittest-coverage| image:: https://gitlab.com/grauwoelfchen/tdd-bear/badges/rust-unittest/coverage.svg
-   :target: https://gitlab.com/grauwoelfchen/tdd-bear/commits/rust-unittest
+.. |rust-unittest-coverage| image:: https://gitlab.com/grauwoelfchen/tdds/badges/rust-unittest/coverage.svg
+   :target: https://gitlab.com/grauwoelfchen/tdds/commits/rust-unittest
 
-.. |go-unittest-pipeline| image:: https://gitlab.com/grauwoelfchen/tdd-bear/badges/go-unittest/pipeline.svg
-   :target: https://gitlab.com/grauwoelfchen/tdd-bear/commits/go-unittest
+.. |go-unittest-pipeline| image:: https://gitlab.com/grauwoelfchen/tdds/badges/go-unittest/pipeline.svg
+   :target: https://gitlab.com/grauwoelfchen/tdds/commits/go-unittest
 
-.. |go-unittest-coverage| image:: https://gitlab.com/grauwoelfchen/tdd-bear/badges/go-unittest/coverage.svg
-   :target: https://gitlab.com/grauwoelfchen/tdd-bear/commits/go-unittest
+.. |go-unittest-coverage| image:: https://gitlab.com/grauwoelfchen/tdds/badges/go-unittest/coverage.svg
+   :target: https://gitlab.com/grauwoelfchen/tdds/commits/go-unittest
 
-.. |csharp-pipeline| image:: https://gitlab.com/grauwoelfchen/tdd-bear/badges/csharp/pipeline.svg
-   :target: https://gitlab.com/grauwoelfchen/tdd-bear/commits/csharp
+.. |csharp-pipeline| image:: https://gitlab.com/grauwoelfchen/tdds/badges/csharp/pipeline.svg
+   :target: https://gitlab.com/grauwoelfchen/tdds/commits/csharp
 
-.. |csharp-coverage| image:: https://gitlab.com/grauwoelfchen/tdd-bear/badges/csharp/coverage.svg
-   :target: https://gitlab.com/grauwoelfchen/tdd-bear/commits/csharp
+.. |csharp-coverage| image:: https://gitlab.com/grauwoelfchen/tdds/badges/csharp/coverage.svg
+   :target: https://gitlab.com/grauwoelfchen/tdds/commits/csharp
 
-.. |csharp-unittest-pipeline| image:: https://gitlab.com/grauwoelfchen/tdd-bear/badges/csharp-unittest/pipeline.svg
-   :target: https://gitlab.com/grauwoelfchen/tdd-bear/commits/csharp-unittest
+.. |csharp-unittest-pipeline| image:: https://gitlab.com/grauwoelfchen/tdds/badges/csharp-unittest/pipeline.svg
+   :target: https://gitlab.com/grauwoelfchen/tdds/commits/csharp-unittest
 
-.. |csharp-unittest-coverage| image:: https://gitlab.com/grauwoelfchen/tdd-bear/badges/csharp-unittest/coverage.svg
-   :target: https://gitlab.com/grauwoelfchen/tdd-bear/commits/csharp-unittest
+.. |csharp-unittest-coverage| image:: https://gitlab.com/grauwoelfchen/tdds/badges/csharp-unittest/coverage.svg
+   :target: https://gitlab.com/grauwoelfchen/tdds/commits/csharp-unittest
 
 
 +-----------------+----------------------------+----------------------------+
