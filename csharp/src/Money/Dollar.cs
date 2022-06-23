@@ -9,8 +9,13 @@ public class Dollar
         this.amount = amount;
     }
 
-    public void Times(int multiplier)
+    public Dollar Times(int multiplier)
     {
-        this.amount *= multiplier;
+        return new Dollar(this.amount * multiplier);
+    }
+
+    public bool Equals(Dollar dollar)
+    {
+        return this.amount == dollar.amount;
     }
 }
