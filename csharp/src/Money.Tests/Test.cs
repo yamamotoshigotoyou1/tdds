@@ -15,10 +15,8 @@ public class Test
     public void TestAddMultiplication()
     {
         Dollar five = new Dollar(5);
-        Dollar product = five.Times(2);
-        Assert.That(product.amount, Is.EqualTo(10));
-        product = five.Times(3);
-        Assert.That(product.amount, Is.EqualTo(15));
+        Assert.True(five.Times(2).Equals(new Dollar(10)));
+        Assert.True(five.Times(3).Equals(new Dollar(15)));
     }
 
     [Test]
@@ -26,4 +24,13 @@ public class Test
     {
         Assert.True(new Dollar(5).Equals(new Dollar(5)));
     }
+
+    [Test]
+    public void TestFrancMultiplication()
+    {
+        Franc five = new Franc(5);
+        Assert.True(five.Times(2).Equals(new Franc(10)));
+        Assert.True(five.Times(3).Equals(new Franc(15)));
+    }
+
 }
