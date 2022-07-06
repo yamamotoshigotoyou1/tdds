@@ -1,21 +1,14 @@
 ﻿namespace Money;
 
-public class Dollar
+public class Dollar : Money
 {
-    private int amount;
-
     public Dollar(int amount)
     {
         this.amount = amount;
     }
 
-    public Dollar Times(int multiplier)
+    public override Money Times(int multiplier)
     {
         return new Dollar(this.amount * multiplier);
-    }
-
-    public bool Equals(Dollar dollar)
-    {
-        return this.amount == dollar.amount;
     }
 }

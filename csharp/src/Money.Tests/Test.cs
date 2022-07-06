@@ -2,8 +2,6 @@ namespace Money.Tests;
 
 using NUnit.Framework;
 
-using Money;
-
 public class Test
 {
     [SetUp]
@@ -14,23 +12,27 @@ public class Test
     [Test]
     public void TestAddMultiplication()
     {
-        Dollar five = new Dollar(5);
-        Assert.True(five.Times(2).Equals(new Dollar(10)));
-        Assert.True(five.Times(3).Equals(new Dollar(15)));
+        Money five = Money.Dollar(5);
+        Assert.True(five.Times(2).Equals(Money.Dollar(10)));
+        Assert.True(five.Times(3).Equals(Money.Dollar(15)));
     }
 
     [Test]
     public void TestEquality()
     {
-        Assert.True(new Dollar(5).Equals(new Dollar(5)));
+        Assert.True(Money.Dollar(5).Equals(Money.Dollar(5)));
+        Assert.False(Money.Dollar(5).Equals(Money.Dollar(6)));
+        Assert.True(Money.Franc(5).Equals(Money.Franc(5)));
+        Assert.False(Money.Franc(5).Equals(Money.Franc(6)));
+        Assert.False(Money.Franc(5).Equals(Money.Dollar(5)));
     }
 
     [Test]
     public void TestFrancMultiplication()
     {
-        Franc five = new Franc(5);
-        Assert.True(five.Times(2).Equals(new Franc(10)));
-        Assert.True(five.Times(3).Equals(new Franc(15)));
+        Money five = Money.Franc(5);
+        Assert.True(five.Times(2).Equals(Money.Franc(10)));
+        Assert.True(five.Times(3).Equals(Money.Franc(15)));
     }
 
 }
