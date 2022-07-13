@@ -34,5 +34,15 @@ public class Test
         Assert.True(five.Times(2).Equals(Money.Franc(10)));
         Assert.True(five.Times(3).Equals(Money.Franc(15)));
     }
-
+    [Test]
+    public void TestCurrency()
+    {
+        Assert.That(Money.Dollar(1).Currency(), Is.EqualTo("USD"));
+        Assert.That(Money.Franc(1).Currency(), Is.EqualTo("CHF"));
+    }
+    [Test]
+    public void TestDifferentClassEquality()
+    {
+        Assert.True(new Money(10, "CHF").Equals(new Franc(10, "CHF")));
+    }
 }
