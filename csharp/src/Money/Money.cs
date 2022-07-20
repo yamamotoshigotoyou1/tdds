@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Money
 {
-    public class Money
+    public class Money : Expression
     {
         protected string currency;
         public int amount;
@@ -33,16 +33,21 @@ namespace Money
 
         public static Money Dollar(int amount)
         {
-            return new Dollar(amount, "USD");
+            return new Money(amount, "USD");
         }
         public static Money Franc(int amount)
         {
-            return new Franc(amount, "CHF");
+            return new Money(amount, "CHF");
         }
 
         public override string ToString()
         {
             return amount + " " + currency;
+        }
+
+        public Expression Plus(Money addend)
+        {
+            return new Money(amount + addend.amount, this.currency);
         }
     }
 }

@@ -22,27 +22,23 @@ public class Test
     {
         Assert.True(Money.Dollar(5).Equals(Money.Dollar(5)));
         Assert.False(Money.Dollar(5).Equals(Money.Dollar(6)));
-        Assert.True(Money.Franc(5).Equals(Money.Franc(5)));
-        Assert.False(Money.Franc(5).Equals(Money.Franc(6)));
         Assert.False(Money.Franc(5).Equals(Money.Dollar(5)));
     }
 
-    [Test]
-    public void TestFrancMultiplication()
-    {
-        Money five = Money.Franc(5);
-        Assert.True(five.Times(2).Equals(Money.Franc(10)));
-        Assert.True(five.Times(3).Equals(Money.Franc(15)));
-    }
     [Test]
     public void TestCurrency()
     {
         Assert.That(Money.Dollar(1).Currency(), Is.EqualTo("USD"));
         Assert.That(Money.Franc(1).Currency(), Is.EqualTo("CHF"));
     }
+
     [Test]
-    public void TestDifferentClassEquality()
+    public void TestSimpleAddition()
     {
-        Assert.True(new Money(10, "CHF").Equals(new Franc(10, "CHF")));
+        Money five = Money.Dollar(5);
+        Expression sum = five.Plus(five);
+        Bank bank = new Bank();
+        Money reduced = bank.Reduce(sum, "USD");
+        Assert.True(Money.Dollar(10).Equals(reduced));
     }
 }
